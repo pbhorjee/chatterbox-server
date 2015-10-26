@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>chatterbox</title>
+
+    <link rel="stylesheet" type="text/css" href="bower_components/normalize-css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/gridism/gridism.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="styles/styles.css">
+
+    <script src="bower_components/jquery/jquery.min.js"></script>
+    <script src="bower_components/underscore/underscore-min.js"></script>
+    <script src="bower_components/moment/min/moment.min.js"></script>
+
+    <script src="env/config.js"></script>
+    <script src="scripts/app.js"></script>
+  </head>
+
+  <body class="wrap wider">
+
+
+    <header>
+      <div class="grid">
+
+        <div class="unit whole center-on-mobiles">
+          <h1><a href="https://github.com/pbhorjee/2015-10-chatterbox-client">Chatterbox!</a></h1>
+          <p class="lead">because <span class="one">.</span><span class="two">.</span><span class="three">.</span> you know, you gotta do it or you don't exist or whatever.</p>
+          <span id="github">
+            <a href="https://github.com/pbhorjee/2015-10-chatterbox-client" class="button" target="_blank">View on GitHub</a>
+          </span>
+        </div>
+
+      </div>
+    </header>
+
+
+    <section class="twittles">
+      <div class="grid">
+
+        <div class="unit half">
+          <div id="room" class="red">Room: <span id="room-name" class="ital"></span></div>
+          <div id="tweet-stream"></div>
+        </div>
+
+        <div class="unit half">
+          <div id="tweet-form">
+            <form id="tweetform" onsubmit="return noSubmit()">
+              <div class="form-labels">
+                <span id="yourself" class="ital red">Chat Yourself!</span> 
+                <input type="text" name="tweet" id="tweet" maxlength="160">
+                <span id="to-go" class="small-text"></span>
+              </div>
+              <div class="form-labels">
+                <span id="newroom" class="ital red">New Room</span>
+                <input type="text" name="newroom" id="newroomname" maxlength="150">
+                <span id="to-go" class="small-text"></span>
+              </div>
+              <div class="form-labels">
+                <span id="rooms" class="ital red">Select Room</span>
+                <select id="rooms-list"></select>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="unit half" id="friends-box">
+          <div class="form-labels">
+            <div id="myfriends" class="ital red">My Friends</div> 
+            <div>
+              <ul id="friends"></ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </body>
+</html>

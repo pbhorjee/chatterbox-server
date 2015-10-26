@@ -1,0 +1,288 @@
+/* TODO make a rounded border around each twittle
+-- TODO make a hover transition over each twittle
+-- TODO make each whole twittle clickable
+*/
+
+/* General */
+
+body {
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #444;
+    background: #FBF6F4;
+    text-shadow: 0 1px 0 rgba(255,255,255,.5);
+}
+
+body > header,
+body > section,
+body > footer {
+    display: block;
+    width: 100%;
+    clear: both;
+    float: left;
+}
+
+h1, h2 {
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    letter-spacing: -.03em;
+    margin-top: 20px;
+    margin-bottom: 0px;
+}
+
+h1 {
+    font-size: 4em;
+    margin-top: 20px;
+    margin-bottom: -10px;
+}
+
+h2 {
+    font-size: 2em;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+a {
+    color: #c00;
+    text-decoration: none;
+    border-bottom: 1px solid #eee;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+
+header, section {
+    border-bottom: 1px solid #eee;
+}
+
+header, section, footer {
+    border-top: 1px solid #fff;
+}
+
+section, footer {
+    padding: 30px 0;
+}
+
+header h1 a {
+    color: #c00;
+    border-bottom: none;
+}
+
+#github {
+    position: absolute;
+    right: 100px;
+    top: 50px;
+}
+
+.lead {
+    font-size: 1.6em;
+}
+
+.button {
+    border-radius: 5px;
+    background: #efefef;
+    background-image: -moz-linear-gradient(#FCFCFC, #EFEFEF);
+    background-image: -webkit-linear-gradient(#FCFCFC, #EFEFEF);
+    background-image: -ms-linear-gradient(#FCFCFC, #EFEFEF);
+    background-image: linear-gradient(#FCFCFC, #EFEFEF);
+    border: 1px solid #DDDDDD;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1);
+    padding: 8px 16px;
+    text-shadow: 0 1px 0 #fff;
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: .5em;
+}
+
+.button.small {
+    font-weight: normal;
+    text-transform: none;
+    padding: 3px 16px;
+}
+
+.button:hover, .button:focus {
+    outline: none;
+    border: 1px solid rgba(255,0,0,.5);
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 0 10px rgba(255,0,0,.3);
+}
+
+footer p {
+    margin: 0;
+    font-size: 1em;
+}
+
+@media (min-width: 960px){
+    h1 {
+        font-size: 5em;
+    }
+    h2 {
+        font-size: 2.6em;
+    }
+    h3 {
+        font-size: 2em;
+    }
+    .lead {
+        font-size: 1.2em;
+    }
+}
+
+.ital {
+    font-style: italic;
+}
+
+.red {
+    color: #c00;
+}
+
+#room {
+    font-size: 24px;
+    top: -7px;
+    position: relative;
+    margin-bottom: 16px;
+}
+
+.friends {
+    display: block !important;
+    margin-top: 3px;
+}
+
+#friends {
+    padding-top: 2px;
+}
+
+#friends-box {
+    display: none;
+}
+
+#tweet-stream {
+    height: 530px;
+    overflow: scroll;
+}
+
+#user-tweets {
+    height: 340px;
+    overflow: scroll;
+}
+
+#tweet-stream>div, #user-tweets>div {
+    margin-bottom: 20px;
+}
+
+.small-text {
+    font-size: 11px;
+}
+
+#myfriends {
+    height: 1000px;
+}
+
+#yourself, #rooms, #myfriends, #newroom {
+    width: 140px;
+    margin-right: 17px;
+    font-size: larger;
+    float: left;
+    margin-top: 3px;
+}
+
+#to-go {
+    margin-left: 160px;
+    visibility: hidden;
+}
+
+.user-link-clickable, #show-mine, #show-none {
+    cursor: pointer;
+}
+
+.user-link-clickable {
+    display: inline-block;
+}
+
+#user-name, #user-tweets, #show-buttons {
+    padding-bottom: 13px;
+}
+
+#tweet-form {
+    margin-bottom: 0px;
+}
+
+#user-tweets {
+    margin-top: 0px;
+}
+
+#user-name, #user-tweets, #show-buttons {
+    padding-top: 13px;
+}
+
+#user-name {
+    font-size: 20px;
+}
+
+#show-buttons {
+    border-bottom: 1px solid #eee;
+}
+
+#show-none {
+    display: none;;
+}
+
+#rooms-list {
+    width: 394px;
+}
+
+.form-labels {
+    margin-bottom: 10px;
+}
+
+.friend-message {
+    font-weight: bold;
+}
+input, select {
+    display: inline;
+    width: 380px;
+    padding: 6px;
+    border: 1px dotted #999;
+    border-radius: 4px;
+    font-family: inherit;
+    outline: none;
+    background-color: white;
+    -webkit-appearance: none;
+}
+
+
+/* animate elipses */
+.one {
+    opacity: 0;
+    -webkit-animation: dot 1.3s infinite;
+    -webkit-animation-delay: 0.0s;
+    animation: dot 1.3s infinite;
+    animation-delay: 0.0s;
+}
+
+.two {
+    opacity: 0;
+    -webkit-animation: dot 1.3s infinite;
+    -webkit-animation-delay: 0.2s;
+    animation: dot 1.3s infinite;
+    animation-delay: 0.2s;
+}
+
+.three {
+    opacity: 0;
+    -webkit-animation: dot 1.3s infinite;
+    -webkit-animation-delay: 0.3s;
+    animation: dot 1.3s infinite;
+    animation-delay: 0.3s;
+}
+
+@-webkit-keyframes dot {
+    0% { opacity: 0; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes dot {
+    0% { opacity: 0; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}

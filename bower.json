@@ -1,0 +1,18 @@
+{
+  "name": "chatterbox",
+  "version": "0.0.0",
+  "dependencies": {
+    "jquery": "~2.0.3",
+    "underscore": "~1.8.3",
+    "normalize-css": "normalize.css#~3.0.3",
+    "moment": "~2.10.6",
+    "gridism": "~0.2.1"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

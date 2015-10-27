@@ -37,19 +37,17 @@ $( document ).ready(function() {
   $("#room-name").text(window.currentRoom);
 
   var getMessages = function() {
-    getQuery("limit=1000;order=-createdAt", function(results) {
+    getQuery(function(results) {
       getRoomnames({results});
       messages = results;
       logMessages(messages);
     });
   }
 
-  var getQuery = function(queryString, callback) {
-    // console.log(queryString);
+  var getQuery = function(callback) {
     $.ajax({
-      url: 'https://api.parse.com/1/classes/chatterbox',
+      url: 'http:127.0.0.1:3000/classes/messages',
       type: 'GET',
-      data: queryString,
       success: function(data) {
         callback(data.results);
       }
@@ -80,7 +78,7 @@ $( document ).ready(function() {
   var update = function() {
     var queryString = 'where={"createdAt":{"$gt":{"__type":"Date","iso":"' + lastMessageDate() + '"}}}';
 
-    var newMessages = getQuery(queryString, function(results) {
+    var newMessages = getQuery(function(results) {
       if (results.length) {
         var newRooms = false;
         logMessages(results);
@@ -90,14 +88,14 @@ $( document ).ready(function() {
     });
   }
 
-  var refresh = function() { setInterval(update, 5000) };
+  // var refresh = function() { setInterval(update, 5000) };
 
   var postMessage = function(message, newRoom) {
-    clearInterval(refresh);
+    //clearInterval(refresh);
 
     newRoom = newRoom || false;
     $.ajax({
-      url: 'https://api.parse.com/1/classes/chatterbox',
+      url: 'http:127.0.0.1:3000/classes/messages',
       type: 'POST',
       data: JSON.stringify(message),
       contentType: 'application/json',
@@ -115,7 +113,7 @@ $( document ).ready(function() {
       }
     });
 
-    refresh();
+    //refresh();
   }
 
   var selectRoom = function(room) {

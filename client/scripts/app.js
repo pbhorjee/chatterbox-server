@@ -69,29 +69,12 @@ $( document ).ready(function() {
     }).uniq().without(undefined).value();
   }
 
-  var lastMessageDate =function() {
-    return messages[0].createdAt;
-  }
-
   getMessages();
 
-  var update = function() {
-    var queryString = 'where={"createdAt":{"$gt":{"__type":"Date","iso":"' + lastMessageDate() + '"}}}';
-
-    var newMessages = getQuery(function(results) {
-      if (results.length) {
-        var newRooms = false;
-        logMessages(results);
-        getRoomnames({results});
-        messages = results.concat(messages);
-      }
-    });
-  }
-
-  // var refresh = function() { setInterval(update, 5000) };
+  var refresh = function() { setInterval(getMessages, 1000) };
 
   var postMessage = function(message, newRoom) {
-    //clearInterval(refresh);
+    clearInterval(refresh);
 
     newRoom = newRoom || false;
     $.ajax({
@@ -113,7 +96,7 @@ $( document ).ready(function() {
       }
     });
 
-    //refresh();
+    refresh();
   }
 
   var selectRoom = function(room) {
@@ -129,6 +112,8 @@ $( document ).ready(function() {
 
   function logMessages(newMessages) {
     // Filter newMessages by room if it is set
+    $tweetStreamContainer.empty();
+
     if (window.currentRoom === "Lobby") {
       newMessages = _.filter(newMessages, function(msg) {
         return (msg.roomname === "Lobby" || msg.roomname === undefined || msg.roomname === null);
@@ -137,7 +122,7 @@ $( document ).ready(function() {
       newMessages = _.where(newMessages, {roomname: window.currentRoom});
     } 
 
-    for (var i = newMessages.length - 1; i >= 0; i--) {
+    for (var i = 0; i < newMessages.length; i++) {
       var message = newMessages[i];
       var username = message.username;
 
@@ -195,7 +180,7 @@ $( document ).ready(function() {
     }
   };
 
-  setInterval(updateUserTimes, 5000);
+  setInterval(updateUserTimes, 1);
 
   function onUserClick(user, remove) {
     if (remove) {

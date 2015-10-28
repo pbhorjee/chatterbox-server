@@ -1,5 +1,3 @@
-
-
 var defaultCorsHeaders = {
   "access-control-allow-origin": "*",
   "access-control-allow-methods": "GET, POST, PUT, DELETE, OPTIONS",
@@ -17,17 +15,24 @@ exports.requestHandler = function(request, response) {
   if (request.method == 'POST') {
     var body = '';
 
-    request.on('data', function (data) { /// must refactor for post on data chunking
+    request.on('data', function(data) {
       body += data;
-      messages.push(JSON.parse(body));
+    }); 
+     
+    request.on('end', function() {
+      var message = JSON.parse(body);
+      message['createdAt'] = new Date().toISOString();
+
+      messages.push(message);
 
       statusCode = 201;
       response.writeHead(statusCode, headers);
-    });
+      response.end();
+    }); 
   } else { 
     if (request.url !== "/classes/messages" && request.url !== "/log") {
-      response.writeHead(statusCode, headers); 
       statusCode = 404;
+      response.writeHead(statusCode, headers); 
       response.end();
     } else {
       response.writeHead(statusCode, headers); 

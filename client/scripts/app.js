@@ -82,17 +82,16 @@ $( document ).ready(function() {
       type: 'POST',
       data: JSON.stringify(message),
       contentType: 'application/json',
-      success: function(data) {
-        if ($('#newroomname').val()) {
-          if (newRoom){
-            selectRoom($('#newroomname').val());
-            $('#rooms-list').val($('#newroomname').val());
-            $('#newroomname').val('');
+      statusCode: {
+        201: function(data) {
+          if ($('#newroomname').val()) {
+            if (newRoom){
+              selectRoom($('#newroomname').val());
+              $('#rooms-list').val($('#newroomname').val());
+              $('#newroomname').val('');
+            }
           }
         }
-      },
-      error: function(data) {
-        console.error('Failed to send. Error: ', data);
       }
     });
 
